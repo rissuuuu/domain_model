@@ -10,7 +10,7 @@ class PaymentType(str, Enum):
 
 
 class EnergyType(BaseModel):
-    name:
+    name: str
     created_date: str
 
 
