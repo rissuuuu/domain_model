@@ -9,15 +9,10 @@ class PaymentType(str, Enum):
     yearly = "yearly"
 
 
-class EnergyType(BaseModel):
-    name: str
-    created_date: str
-
-
 class EnergySource(BaseModel):
     name: str
     address: str
-    energy_type: EnergyType
+    energy_type: str
     email: str
     avg_production: float
     payment_duration: int
@@ -30,7 +25,7 @@ class EnergySource(BaseModel):
 class energysource_factory(
     name: str
     address: str
-    energy_type: EnergyType
+    energy_type: str
     email: str
     avg_production: float
     payment_duration: int

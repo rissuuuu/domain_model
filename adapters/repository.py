@@ -1,15 +1,8 @@
 # import model
-from domain.model import EnergyType,EnergySource
+from domain.model import EnergySource
 from pydantic.dict import Dict
 
 
-class EnergyTypeRepo:
-    async def add(self,model:EnergyType):
-        values={
-            "name":model.name,
-            "created_date": model.created_date
-        }
-        await model.append(values)
 
 
 class EnergySourceRepo:
