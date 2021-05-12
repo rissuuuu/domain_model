@@ -29,7 +29,7 @@ def energysource_factory(
     avg_production: float,
     payment_duration: int,
     payment_type: PaymentType,
-        ) -> EnergySource:
+) -> EnergySource:
     return EnergySource(
         name=name,
         address=address,

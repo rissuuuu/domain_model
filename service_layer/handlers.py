@@ -1,7 +1,8 @@
 from domain.model import EnergySource, energysource_factory
 from domain.command import AddEnergySource
 
-def add_energy_source(cmd:AddEnergySource)->EnergySource:
+
+def add_energy_source(cmd: AddEnergySource) -> EnergySource:
     return energysource_factory(
         name=cmd.name,
         address=cmd.address,

@@ -1,6 +1,7 @@
 from __future__ import annotations
 import abc
 from adapters import abstractRepository
+from adapters import repository
 
 
 class AbstractUnitOfWork(abc.ABC):
@@ -23,13 +24,14 @@ class AbstractUnitOfWork(abc.ABC):
     def rollback(self):
         raise NotImplementedError
 
-class BatchUonitOfWork(AbstractUnitOfWork):
+
+class EnergyUonitOfWork(AbstractUnitOfWork):
     def __init__(self):
-        self.model = repository.Batchrepository()
+        self.model = repository.EnergySourceRepo
         self.committed = False
 
     def __enter__(self):
-        self.model = repository.Batchrepository()
+        self.model = repository.EnergySourceRepo()
         return super().__enter__()
 
     def __exit__(self, *args):

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from domain.model import EnergySource,PaymentType
+from domain.model import EnergySource, PaymentType
 
 
 class AddEnergySource(BaseModel):
