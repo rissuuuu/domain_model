@@ -1,7 +1,5 @@
 from pydantic import BaseModel
-from datetime import date
-from domain.model import EnergySource
-
+from domain.model import EnergySource,PaymentType
 
 
 class AddEnergySource(BaseModel):

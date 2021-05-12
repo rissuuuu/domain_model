@@ -1,0 +1,5 @@
+adapters/__pycache__/
+domain/__pycache__/
+service_layer/__pycache__/
+file.json
+__pycache__

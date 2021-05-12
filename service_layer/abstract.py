@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from datetime import Optional, date, datetime
+# from datetime import Optional, date, datetime
 # from email import email
+from domain.model import EnergySource
 from enum import Enum
 
 
