@@ -1,7 +1,7 @@
-from __future__ import annotations
 import abc
 from adapters import abstractRepository
 from adapters import repository
+from __future__ import annotations
 
 
 class AbstractUnitOfWork(abc.ABC):
@@ -43,3 +43,16 @@ class EnergyUonitOfWork(AbstractUnitOfWork):
 
     def rollback(self):
         pass
+
+class Open_File():
+    def __init__(self,filename,mode):
+        self.filename=filename
+        self.mode=mode
+    
+    def __enter__(self):
+
+        self.file=open(self.filename,self.mode)
+        return self.file
+    
+    def __exit__(self,exec_type,exec_val,traceback):
+        self.file.close()

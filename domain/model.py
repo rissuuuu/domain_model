@@ -1,11 +1,7 @@
 from pydantic import BaseModel
 # from email import email
 from enum import Enum
-
-
-class PaymentType(str, Enum):
-    monthly = "monthly"
-    yearly = "yearly"
+from typing import Dict,Any
 
 
 class EnergySource(BaseModel):
@@ -15,10 +11,13 @@ class EnergySource(BaseModel):
     email: str
     avg_production: float
     payment_duration: int
-    payment_type: PaymentType
+    payment_type: str
 
     class Config:
-        use_enum_values = True
+        allow_mutation = True
+    
+    def update(self,mapping:Dict[str,Any]):
+        return self.copy(update=mapping)
 
 
 def energysource_factory(
@@ -28,7 +27,7 @@ def energysource_factory(
     email: str,
     avg_production: float,
     payment_duration: int,
-    payment_type: PaymentType,
+    payment_type: str,
 ) -> EnergySource:
     return EnergySource(
         name=name,

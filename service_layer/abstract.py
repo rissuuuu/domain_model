@@ -4,12 +4,6 @@ from pydantic import BaseModel
 from domain.model import EnergySource
 from enum import Enum
 
-
-class PaymentType(str, Enum):
-    monthly = "monthly"
-    yearly = "yearly"
-
-
 class AddEnergySource(BaseModel):
     name: str
     address: str
@@ -17,10 +11,18 @@ class AddEnergySource(BaseModel):
     email: str
     avg_production: float
     payment_duration: int
-    payment_type: PaymentType
+    payment_type: str
 
-    class Config:
-        use_enum_values = True
+
 
 class EnergySourceAbstract(BaseModel):
     energy_source:EnergySource
+
+class UpdateEnergySource(BaseModel):
+    name: str
+    address: str
+    energy_type: str
+    email: str
+    avg_production: float
+    payment_duration: int
+    payment_type: str
