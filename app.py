@@ -4,6 +4,7 @@ from sanic.response import text, json
 from service_layer import service
 from service_layer import abstract
 from sanic.response import HTTPResponse
+from service_layer import unit_of_work
 
 app=Sanic(__name__)
 
@@ -22,7 +23,7 @@ def add_new_energy(request):
         avg_production="100",
         payment_duration=1,
         payment_type="monthly"
-    ))
+    ),uow=unit_of_work.EnergyUonitOfWork)
     return HTTPResponse("success")
 
 @app.route("/update", methods=['GET', 'POST'])
