@@ -28,10 +28,7 @@ def add_new_energy(request):
 @app.route("/update", methods=['GET', 'POST'])
 def update_energy(request):
     service.update_energy_source(id_=1,validated_data=abstract.UpdateEnergySource(
-        name="Rishav",
-        address="Bhaktapur",
-        energy_type="Wind",
-        payment_type="yearly"
+        name="Rishav"
     ))
     return HTTPResponse("success")
 
