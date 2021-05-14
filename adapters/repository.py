@@ -6,8 +6,8 @@ from datetime import datetime
 database={}
 i=0
 class EnergySourceRepo(AbstractRepository):
-    def get(self,id:int) -> EnergySource:
-        data=database[id]
+    def get(self,id_:int) -> EnergySource:
+        data=database[id_]
         print("GET,data",data)
         energydata=EnergySource(**data)
         return energydata
@@ -29,7 +29,7 @@ class EnergySourceRepo(AbstractRepository):
             pickle.dump(database, handle, protocol=pickle.HIGHEST_PROTOCOL)
         print(database)
 
-    def update(self,id,model: EnergySource) -> None:
+    def update(self,id_,model: EnergySource) -> None:
         values = {
             "name": model.name,
             "address": model.address,
@@ -39,5 +39,6 @@ class EnergySourceRepo(AbstractRepository):
             "payment_duration": model.payment_duration,
             "payment_type": model.payment_type
         }
-        database[id]=values
+        print("repo")
+        database[id_]=values
         print(database)

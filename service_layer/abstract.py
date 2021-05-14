@@ -14,15 +14,11 @@ class AddEnergySource(BaseModel):
     payment_type: str
 
 
-
-class EnergySourceAbstract(BaseModel):
-    energy_source:EnergySource
-
 class UpdateEnergySource(BaseModel):
     name: str
     address: str
     energy_type: str
-    email: str
-    avg_production: float
-    payment_duration: int
+    email: str =None
+    avg_production: float =None
+    payment_duration: int =None
     payment_type: str

@@ -19,10 +19,13 @@ def add_energy_source(validated_data: abstract.AddEnergySource) -> None:
     repo.add(energysource)
 
 
-def update_energy_source(id: int, validated_data: abstract.UpdateEnergySource) -> None:
+def update_energy_source(id_: int, validated_data: abstract.UpdateEnergySource) -> None:
     repo = EnergySourceRepo()
-    energysource=repo.get(id)
-    print("RESPONSE FROM REPO",energysource)
+    energysource=repo.get(id_)
+    print("RESPONSE FROM REPO",energysource,type(energysource),validated_data)
+
+
+
     energy_source=handlers.update_energy_source(
         command.UpdateEnergySource(
             energy_source=energysource,
@@ -35,5 +38,6 @@ def update_energy_source(id: int, validated_data: abstract.UpdateEnergySource) -
             payment_type=validated_data.payment_type if validated_data.payment_type else energysource.payment_type
         )
     )
-    repo.update(id,energy_source)
+    print("Service",energy_source)
+    repo.update(id_,energy_source)
     
