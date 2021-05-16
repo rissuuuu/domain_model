@@ -31,15 +31,32 @@ class EnergyUonitOfWork(AbstractUnitOfWork):
         self.repo = repository.EnergySourceRepo()
 
     def __enter__(self):
-        self.storedata=[]
+        self.data_to_store=None
         return self
 
     def __exit__(self, *args):
         super().__exit__(*args)
 
     def commit(self):
-        self.repo.add(self.storedata[0])
+        self.repo.add(self.data_to_store)
 
     def rollback(self):
         pass
 
+class UpdateEnergyUonitOfWork(AbstractUnitOfWork):
+    def __init__(self):
+        self.repo = repository.EnergySourceRepo()
+
+    def __enter__(self):
+        self.id_=None
+        self.data_to_update=None
+        return self
+
+    def __exit__(self, *args):
+        super().__exit__(*args)
+
+    def commit(self):
+        self.repo.update(self.id_,self.data_to_update)
+
+    def rollback(self):
+        pass

@@ -30,7 +30,7 @@ def add_new_energy(request):
 def update_energy(request):
     service.update_energy_source(id_=1,validated_data=abstract.UpdateEnergySource(
         name="Rishav"
-    ))
+    ),uow=unit_of_work.UpdateEnergyUonitOfWork)
     return HTTPResponse("success")
 
 if __name__ == "__main__":
