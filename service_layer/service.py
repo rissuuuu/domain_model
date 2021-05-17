@@ -4,7 +4,7 @@ from domain import command
 from adapters.repository import EnergySourceRepo
 from service_layer import unit_of_work
 
-def add_energy_source(validated_data: abstract.AddEnergySource,uow:unit_of_work.EnergyUonitOfWork) -> None:
+async def add_energy_source(validated_data: abstract.AddEnergySource,uow:unit_of_work.EnergyUonitOfWork) -> None:
     with uow() as w:
         energysource = handlers.add_energy_source(command.AddEnergySource(
             name=validated_data.name,
@@ -19,7 +19,7 @@ def add_energy_source(validated_data: abstract.AddEnergySource,uow:unit_of_work.
         w.commit()
 
 
-def update_energy_source(id_: int, validated_data: abstract.UpdateEnergySource,
+async def update_energy_source(id_: int, validated_data: abstract.UpdateEnergySource,
 uow=unit_of_work.UpdateEnergyUonitOfWork) -> None:
     with uow() as w:
         energysource=w.repo.get(id_)

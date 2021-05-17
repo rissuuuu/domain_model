@@ -8,7 +8,7 @@ i=0
 class EnergySourceRepo(AbstractRepository):
     def get(self,id_:int) -> EnergySource:
         data=database[id_]
-        print("GET,data",data)
+        print("Repo GET,data",data)
         energydata=EnergySource(**data)
         return energydata
 
@@ -27,7 +27,7 @@ class EnergySourceRepo(AbstractRepository):
         database[i]=values
         with open('database.pickle', 'wb') as handle:
             pickle.dump(database, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        print(database)
+        print("After adding to database",database)
 
     def update(self,id_,model: EnergySource) -> None:
         values = {
@@ -39,6 +39,5 @@ class EnergySourceRepo(AbstractRepository):
             "payment_duration": model.payment_duration,
             "payment_type": model.payment_type
         }
-        print("repo")
         database[id_]=values
-        print(database)
+        print("After updateing to database",database)
