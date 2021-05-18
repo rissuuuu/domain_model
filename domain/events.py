@@ -5,7 +5,5 @@ class Event:
     
 
 @dataclass
-class EnergyNotGenerated(Event):
+class EnergySourceCreated(Event):
     energy_id: str
-    class Config:
-        arbitrary_types_allowed = True
