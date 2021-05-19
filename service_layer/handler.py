@@ -3,8 +3,12 @@ from service_layer import handlers
 from domain import command
 from adapters.repository import EnergySourceRepo
 from service_layer import unit_of_work
+from domain import events
 
-async def add_energy_source(validated_data: abstract.AddEnergySource,uow:unit_of_work.EnergyUonitOfWork) -> None:
+async def add_energy_source(validated_data: abstract.AddEnergySource,
+    uow:unit_of_work.EnergyUonitOfWork,
+    event:events.EnergySourceCreated
+    ) -> None:
     with uow() as w:
         energysource = handlers.add_energy_source(command.AddEnergySource(
             name=validated_data.name,
@@ -20,7 +24,9 @@ async def add_energy_source(validated_data: abstract.AddEnergySource,uow:unit_of
 
 
 async def update_energy_source(id_: int, validated_data: abstract.UpdateEnergySource,
-uow=unit_of_work.UpdateEnergyUonitOfWork) -> None:
+    uow:unit_of_work.UpdateEnergyUonitOfWork,
+    event:events.EnergySourceUpdated
+    ) -> None:
     with uow() as w:
         energysource=w.repo.get(id_)
         # print("RESPONSE FROM REPO",energysource,type(energysource),validated_data)

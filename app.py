@@ -5,6 +5,7 @@ from service_layer import handler
 from service_layer import abstract
 from sanic.response import HTTPResponse
 from service_layer import unit_of_work
+from domain import events
 import asyncio
 
 app = Sanic(__name__)
@@ -25,7 +26,8 @@ async def add_new_energy(request):
         avg_production="100",
         payment_duration=1,
         payment_type="monthly"
-    ), uow=unit_of_work.EnergyUonitOfWork)
+    ), uow=unit_of_work.EnergyUonitOfWork,
+       event=events.EnergySourceCreated )
     return HTTPResponse("success")
 
 
@@ -33,7 +35,8 @@ async def add_new_energy(request):
 async def update_energy(request):
     await handler.update_energy_source(id_=1, validated_data=abstract.UpdateEnergySource(
         name="Rishav"
-    ), uow=unit_of_work.UpdateEnergyUonitOfWork)
+    ), uow=unit_of_work.UpdateEnergyUonitOfWork,
+       event=events.EnergySourceUpdated )
     return HTTPResponse("success")
 
 if __name__ == "__main__":
