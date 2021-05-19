@@ -15,11 +15,6 @@ class AbstractUnitOfWork(abc.ABC):
 
     @abc.abstractmethod
     def publish_events(self):
-        # for energy in self.repo.seen:
-        #     while energy.events:
-        #         event=energy.events.pop(0)
-        #         messagebus.handle(event)
-        # pass
         raise NotImplementedError
 
     @abc.abstractmethod
