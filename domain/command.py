@@ -16,7 +16,6 @@ class EnergySourceCommand(BaseModel):
     energy_source: EnergySource
 
 class UpdateEnergySource(EnergySourceCommand):
-    print("Command")
     name: str
     address: str
     energy_type: str

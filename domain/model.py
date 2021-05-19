@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 # from email import email
 from enum import Enum
-from typing import Dict,Any
-
+from typing import Dict,Any,List, Optional
+from domain.events import Event
 
 class EnergySource(BaseModel):
     name: str
@@ -12,9 +12,14 @@ class EnergySource(BaseModel):
     avg_production: float
     payment_duration: int
     payment_type: str
+    events: List[Event]= None
 
     class Config:
         allow_mutation = True
+        arbitrary_types_allowed=True
+
+    def __hash__(self):
+        return hash((type(self),) + tuple(self.__dict__.values()))
     
     def update(self,mapping:Dict[str,Any]):
         return self.copy(update=mapping)
@@ -38,3 +43,7 @@ def energysource_factory(
         payment_duration=payment_duration,
         payment_type=payment_type
     )
+
+
+
+

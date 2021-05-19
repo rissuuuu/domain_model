@@ -6,13 +6,13 @@ from datetime import datetime
 database={}
 i=0
 class EnergySourceRepo(AbstractRepository):
-    def get(self,id_:int) -> EnergySource:
+    def _get(self,id_:int) -> EnergySource:
         data=database[id_]
-        print("Repo GET,data",data)
+        # print("Repo GET,data",data)
         energydata=EnergySource(**data)
         return energydata
 
-    def add(self, model: EnergySource) -> None:
+    def _add(self, model: EnergySource) -> None:
         values = {
             "name": model.name,
             "address": model.address,

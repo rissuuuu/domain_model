@@ -23,7 +23,7 @@ async def update_energy_source(id_: int, validated_data: abstract.UpdateEnergySo
 uow=unit_of_work.UpdateEnergyUonitOfWork) -> None:
     with uow() as w:
         energysource=w.repo.get(id_)
-        print("RESPONSE FROM REPO",energysource,type(energysource),validated_data)
+        # print("RESPONSE FROM REPO",energysource,type(energysource),validated_data)
         energy_source=handlers.update_energy_source(
             command.UpdateEnergySource(
                 energy_source=energysource,
